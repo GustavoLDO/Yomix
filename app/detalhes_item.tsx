@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { styles } from '../assets/style/detalhes_item.styles';
+import { styles } from '../assets/styles/detalhes_item.styles.js';
 
 export default function TelaDetalhes() {
   const router = useRouter();

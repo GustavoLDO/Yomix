@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { MangaCard } from '../components/MangaCard';
-import { styles } from '../assets/style/index.styles';
+import { styles } from '../assets/styles/index.styles.js';
 
 const ARRAY_INICIAL = [
   {

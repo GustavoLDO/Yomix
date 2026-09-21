@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { styles } from '../assets/style/adicionar_item.styles';
+import { styles } from '../assets/styles/adicionar_item.styles.js';
 
 export default function TelaAdicionarItem() {
   const router = useRouter();

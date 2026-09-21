@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
-import { styles } from '../assets/style/item_favorito.styles';
+import { styles } from '../assets/styles/item_favorito.styles.js';
 
 export default function TelaItemFavorito() {
   const router = useRouter();

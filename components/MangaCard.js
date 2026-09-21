@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { styles } from '../assets/style/MangaCard.styles';
+import { styles } from '../assets/styles/MangaCard.styles.js';
 
 export function MangaCard({ manga, onPress }) {
   return (
