@@ -9,8 +9,7 @@ export default function LayoutRaiz() {
         headerStyle: styles.headerContainer,
         headerTintColor: '#6C5CE7',
         headerTitleStyle: styles.headerTitle,
-        headerBackButtonDisplayMode: 'minimal',
-        headerBackTitle: '',
+        headerBackTitleVisible: false,
         contentStyle: { backgroundColor: '#13131A' },
       }}
     >
