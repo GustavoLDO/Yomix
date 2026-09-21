@@ -1,116 +1,80 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import { useRouter } from 'expo-router';
 import MangaCard from '../components/MangaCard';
 import { styles } from '../assets/styles/index.styles';
 
-const MANGAS_INICIAIS = [
+// Dados estáticos do catálogo Yomix (sem exibição de datas)
+export const MANGAS_DATA = [
   {
     id: '1',
     nome: 'One Piece',
-    descricao: 'A jornada de Monkey D. Luffy para se tornar o Rei dos Piratas.',
+    genero: 'Aventura / Shonen',
+    capitulos: '1100+ caps',
+    descricao: 'Uma jornada épica pelo oceano em busca do tesouro supremo.',
+    sinopseCompleta: 'Monkey D. Luffy recruta uma tripulação para explorar o oceano e encontrar o lendário tesouro conhecido como One Piece.',
+    capitulosDetalhe: '1100+ capítulos',
+    autor: 'Eiichiro Oda',
+    personagens: ['Luffy', 'Zoro', 'Nami', 'Sanji'],
+    imagem: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600',
     favorito: true,
-    imagem: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500',
   },
   {
     id: '2',
     nome: 'Jujutsu Kaisen',
-    descricao: 'Estudantes enfrentam maldições perigosas para proteger a humanidade.',
+    genero: 'Ação / Sobrenatural',
+    capitulos: '250+ caps',
+    descricao: 'Feiticeiros enfrentam maldições perigosas para proteger a humanidade.',
+    sinopseCompleta: 'Yuji Itadori engole um talismã amaldiçoado e entra no mundo dos Feiticeiros Jujutsu para combater maldições.',
+    capitulosDetalhe: '250+ capítulos',
+    autor: 'Gege Akutami',
+    personagens: ['Itadori', 'Gojo', 'Megumi', 'Nobara'],
+    imagem: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600',
     favorito: false,
-    imagem: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500',
-  },
-  {
-    id: '3',
-    nome: 'Demon Slayer',
-    descricao: 'Tanjiro luta para curar a sua irmã e derrotar os demónios.',
-    favorito: true,
-    imagem: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500',
-  },
-  {
-    id: '4',
-    nome: 'Attack on Titan',
-    descricao: 'A humanidade luta pela sobrevivência contra os Titãs.',
-    favorito: false,
-    imagem: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=500',
   },
 ];
 
-export default function HomeScreen() {
+/**
+ * Tela Principal do Catálogo Yomix.
+ * Apresenta a lista com FlatList e a navegação entre as telas.
+ */
+export default function IndexScreen() {
   const router = useRouter();
-  const [mangas, setMangas] = useState(MANGAS_INICIAIS);
-
-  const toggleFavorito = (id: string) => {
-    setMangas((prevMangas) =>
-      prevMangas.map((manga) =>
-        manga.id === id ? { ...manga, favorito: !manga.favorito } : manga
-      )
-    );
-  };
-
-  const mangasFavoritos = mangas.filter((manga) => manga.favorito);
-  const imagens = mangasFavoritos.map((manga) => ({ uri: manga.imagem }));
-
-  const irParaTelaDestaques = () => {
-    router.push({
-      pathname: '/item_favorito',
-      params: {
-        favoritosData: JSON.stringify(mangasFavoritos),
-        imagensData: JSON.stringify(imagens),
-      },
-    });
-  };
+  const [mangas] = useState(MANGAS_DATA);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Catálogo de Mangás</Text>
-        <TouchableOpacity style={styles.addButton} onPress={() => router.push('/adicionar_item')}>
-          <Text style={styles.addButtonText}>+ Novo</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={mangas}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <MangaCard manga={item} />}
+        contentContainerStyle={styles.listContent}
+        ListHeaderComponent={
+          <ImageBackground
+            source={{ uri: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800' }}
+            style={styles.banner}
+            imageStyle={{ borderRadius: 8 }}
+          >
+            <View style={styles.bannerOverlay}>
+              <Text style={styles.bannerTitle}>Meus Mangás</Text>
+              <Text style={styles.bannerSubtitle}>Encontre algo incrível para ler!</Text>
+            </View>
+          </ImageBackground>
+        }
+      />
+
+      {/* Barra de Navegação Inferior */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
+          <Text style={[styles.navText, styles.activeNavText]}>Mangás</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push('/item_favorito')}>
+          <Text style={styles.navText}>Favoritos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push('/adicionar_item')}>
+          <Text style={styles.navText}>Adicionar</Text>
         </TouchableOpacity>
       </View>
-
-      {mangasFavoritos.length > 0 && (
-        <View style={styles.sectionContainer}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>⭐ Em Destaque ({mangasFavoritos.length})</Text>
-            <TouchableOpacity onPress={irParaTelaDestaques}>
-              <Text style={styles.verMaisText}>Ver Destaques →</Text>
-            </TouchableOpacity>
-          </View>
-
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.destaqueContainer}>
-            {mangasFavoritos.map((manga) => (
-              <TouchableOpacity
-                key={manga.id}
-                style={styles.destaqueCard}
-                onPress={() => router.push({ pathname: '/detalhes_item', params: { id: manga.id, nome: manga.nome } })}
-              >
-                <Image source={{ uri: manga.imagem }} style={styles.destaqueImage} />
-                <View style={styles.destaqueHeader}>
-                  <Text style={styles.destaqueTag}>DESTAQUE</Text>
-                  <TouchableOpacity onPress={() => toggleFavorito(manga.id)}>
-                    <Text style={styles.starIcon}>★</Text>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.destaqueNome} numberOfLines={1}>{manga.nome}</Text>
-                <Text style={styles.destaqueDescricao} numberOfLines={2}>{manga.descricao}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-      )}
-
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Todos os Mangás</Text>
-        {mangas.map((item) => (
-          <MangaCard
-            key={item.id}
-            manga={item}
-            onPress={() => router.push({ pathname: '/detalhes_item', params: { id: item.id, nome: item.nome } })}
-            onToggleFavorito={() => toggleFavorito(item.id)}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    </View>
   );
 }
