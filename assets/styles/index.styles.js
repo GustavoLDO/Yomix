@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
+    backgroundColor: '#121214',
   },
   listContent: {
     padding: 16,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   bannerOverlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    backgroundColor: 'rgba(18, 18, 20, 0.75)',
     flex: 1,
     justifyContent: 'center',
     padding: 16,
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bannerSubtitle: {
-    color: '#FFFFFF',
+    color: '#A8A8B3',
     fontSize: 14,
     marginTop: 4,
   },
@@ -38,10 +38,10 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 60,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#202024',
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
+    borderTopColor: '#29292E',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -52,10 +52,10 @@ export const styles = StyleSheet.create({
   },
   navText: {
     fontSize: 12,
-    color: '#8E8E93',
+    color: '#A8A8B3',
   },
   activeNavText: {
-    color: '#007AFF',
+    color: '#8257E5',
     fontWeight: 'bold',
   },
 });

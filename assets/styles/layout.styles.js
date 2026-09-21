@@ -2,14 +2,14 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#121214',
   },
   headerTitle: {
-    color: '#000000',
+    color: '#E1E1E6',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
   contentContainer: {
-    backgroundColor: '#F2F2F7',
+    backgroundColor: '#121214',
   },
 });

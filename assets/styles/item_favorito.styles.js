@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
+    backgroundColor: '#121214',
   },
   headerTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#FFFFFF',
     padding: 16,
     paddingBottom: 8,
   },
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#8E8E93',
+    color: '#A8A8B3',
     fontSize: 14,
   },
   bottomNav: {
@@ -31,10 +31,10 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 60,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#202024',
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
+    borderTopColor: '#29292E',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -45,10 +45,10 @@ export const styles = StyleSheet.create({
   },
   navText: {
     fontSize: 12,
-    color: '#8E8E93',
+    color: '#A8A8B3',
   },
   activeNavText: {
-    color: '#007AFF',
+    color: '#8257E5',
     fontWeight: 'bold',
   },
 });

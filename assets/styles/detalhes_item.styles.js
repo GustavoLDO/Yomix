@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
+    backgroundColor: '#121214',
   },
   container: {
     flex: 1,
@@ -21,45 +21,46 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   metaText: {
     fontSize: 13,
-    color: '#8E8E93',
+    color: '#FF9000',
+    fontWeight: '600',
     marginBottom: 2,
   },
   autorText: {
     fontSize: 13,
-    color: '#8E8E93',
+    color: '#A8A8B3',
     marginBottom: 16,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#FFFFFF',
     marginTop: 16,
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: '#3C3C43',
+    color: '#E1E1E6',
     lineHeight: 20,
   },
   listItem: {
     fontSize: 14,
-    color: '#3C3C43',
+    color: '#A8A8B3',
     marginBottom: 4,
   },
   favButton: {
-    backgroundColor: '#007AFF',
-    borderRadius: 6,
+    backgroundColor: '#8257E5',
+    borderRadius: 8,
     paddingVertical: 12,
     alignItems: 'center',
     marginTop: 24,
   },
   favButtonActive: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: '#E53E3E',
   },
   favButtonText: {
     color: '#FFFFFF',
@@ -72,10 +73,10 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 60,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#202024',
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: '#E5E5EA',
+    borderTopColor: '#29292E',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -86,6 +87,6 @@ export const styles = StyleSheet.create({
   },
   navText: {
     fontSize: 12,
-    color: '#8E8E93',
+    color: '#A8A8B3',
   },
 });

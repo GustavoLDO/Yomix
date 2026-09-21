@@ -2,15 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   cardContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#202024',
     borderRadius: 12,
     marginBottom: 16,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#29292E',
   },
   cardImage: {
     width: '100%',
@@ -22,22 +19,23 @@ export const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   cardMeta: {
     fontSize: 12,
-    color: '#8E8E93',
+    color: '#FF9000',
+    fontWeight: '600',
     marginBottom: 8,
   },
   cardDescription: {
     fontSize: 14,
-    color: '#3C3C43',
+    color: '#A8A8B3',
     lineHeight: 20,
     marginBottom: 16,
   },
   button: {
-    backgroundColor: '#FF5A00',
+    backgroundColor: '#8257E5',
     borderRadius: 8,
     paddingVertical: 12,
     alignItems: 'center',
