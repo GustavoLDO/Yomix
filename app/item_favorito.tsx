@@ -1,45 +1,49 @@
 import React from 'react';
-import { View, Text, ScrollView, Image } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import MangaCard from '../components/MangaCard';
+import { MANGAS_DATA } from './index';
 import { styles } from '../assets/styles/item_favorito.styles';
 
+/**
+ * Tela de Favoritos responsável por listar apenas os mangás marcados como favoritos.
+ */
 export default function ItemFavoritoScreen() {
-  const params = useLocalSearchParams();
+  const router = useRouter();
 
-  const favoritos = params.favoritosData ? JSON.parse(params.favoritosData as string) : [];
-  const imagens: { uri: string }[] = params.imagensData ? JSON.parse(params.imagensData as string) : [];
+  // Filtragem dos itens cujo parâmetro 'favorito' é verdadeiro
+  const favoritos = MANGAS_DATA.filter((manga) => manga.favorito);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.title}>⭐ Mangás Favoritados</Text>
-      <Text style={styles.subtitle}>Total de obras em destaque: {favoritos.length}</Text>
+    <View style={styles.container}>
+      <Text style={styles.headerTitle}>Minhas favoritas</Text>
 
-      {imagens.length > 0 && (
-        <View style={styles.galeriaSection}>
-          <Text style={styles.sectionHeaderTitle}>Capas dos Favoritos</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.galeriaScroll}>
-            {imagens.map((img, index) => (
-              <Image key={index} source={img} style={styles.galeriaImage} />
-            ))}
-          </ScrollView>
-        </View>
-      )}
-
-      {favoritos.map((item: any) => (
-        <View key={item.id} style={styles.card}>
-          <Image source={{ uri: item.imagem }} style={styles.cardImage} />
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>{item.nome}</Text>
-            <Text style={styles.cardDesc}>{item.descricao}</Text>
-          </View>
-        </View>
-      ))}
-
-      {favoritos.length === 0 && (
+      {/* Apresentação da lista de favoritos com FlatList */}
+      {favoritos.length > 0 ? (
+        <FlatList
+          data={favoritos}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <MangaCard manga={item} />}
+          contentContainerStyle={styles.listContent}
+        />
+      ) : (
         <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>Nenhum mangá favoritado no momento.</Text>
+          <Text style={styles.emptyText}>Nenhum mangá favoritado até o momento.</Text>
         </View>
       )}
-    </ScrollView>
+
+      {/* Barra de Navegação Inferior */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
+          <Text style={styles.navText}>Mangás</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push('/item_favorito')}>
+          <Text style={[styles.navText, styles.activeNavText]}>Favoritos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.push('/adicionar_item')}>
+          <Text style={styles.navText}>Adicionar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }

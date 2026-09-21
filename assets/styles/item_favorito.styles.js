@@ -3,71 +3,52 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#13131A',
+    backgroundColor: '#F2F2F7',
   },
-  contentContainer: {
-    padding: 16,
-  },
-  title: {
+  headerTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#A0A0B0',
-    marginBottom: 20,
-  },
-  galeriaSection: {
-    marginBottom: 24,
-  },
-  sectionHeaderTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginBottom: 10,
-  },
-  galeriaScroll: {
-    flexDirection: 'row',
-  },
-  galeriaImage: {
-    width: 120,
-    height: 80,
-    borderRadius: 8,
-    marginRight: 10,
-    borderWidth: 1,
-    borderColor: '#6C5CE7',
-  },
-  card: {
-    backgroundColor: '#1E1E28',
-    borderRadius: 12,
-    marginBottom: 16,
-    overflow: 'hidden',
-  },
-  cardImage: {
-    width: '100%',
-    height: 140,
-  },
-  cardContent: {
+    color: '#000000',
     padding: 16,
+    paddingBottom: 8,
   },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginBottom: 6,
-  },
-  cardDesc: {
-    fontSize: 14,
-    color: '#A0A0B0',
+  listContent: {
+    padding: 16,
+    paddingBottom: 70,
   },
   emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
   },
   emptyText: {
-    color: '#A0A0B0',
-    fontSize: 15,
+    color: '#8E8E93',
+    fontSize: 14,
+  },
+  bottomNav: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: '#E5E5EA',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  navButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  navText: {
+    fontSize: 12,
+    color: '#8E8E93',
+  },
+  activeNavText: {
+    color: '#007AFF',
+    fontWeight: 'bold',
   },
 });
