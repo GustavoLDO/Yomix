@@ -3,46 +3,98 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121214',
-    paddingHorizontal: 16,
-    paddingTop: 50,
+    backgroundColor: '#13131A',
+  },
+  contentContainer: {
+    padding: 16,
+    paddingBottom: 32,
   },
   header: {
-    marginBottom: 16,
-  },
-  tituloHeader: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#FF6B6B',
-  },
-  subtituloHeader: {
-    fontSize: 14,
-    color: '#888',
-  },
-  acoesContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16,
-  },
-  botaoAcao: {
-    flex: 1,
-    backgroundColor: '#29293E',
-    padding: 12,
-    borderRadius: 8,
     alignItems: 'center',
-    marginRight: 6,
+    marginBottom: 24,
+    marginTop: 12,
   },
-  botaoFavoritos: {
-    marginRight: 0,
-    marginLeft: 6,
-    backgroundColor: '#3E2938',
-  },
-  textoBotaoAcao: {
-    color: '#FFF',
+  headerTitle: {
+    fontSize: 28,
     fontWeight: 'bold',
-    fontSize: 12,
+    color: '#FFFFFF',
   },
-  listaContainer: {
-    paddingBottom: 20,
+  addButton: {
+    backgroundColor: '#6C5CE7',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+  },
+  addButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  sectionContainer: {
+    marginBottom: 24,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#A0A0B0',
+  },
+  verMaisText: {
+    color: '#6C5CE7',
+    fontWeight: 'bold',
+    fontSize: 13,
+  },
+  destaqueContainer: {
+    gap: 12,
+  },
+  destaqueCard: {
+    backgroundColor: '#1E1E28',
+    borderColor: '#6C5CE7',
+    borderWidth: 1.5,
+    borderRadius: 12,
+    padding: 12,
+    width: 220,
+  },
+  destaqueImage: {
+    width: '100%',
+    height: 100,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  destaqueHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  destaqueTag: {
+    backgroundColor: '#6C5CE7',
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: 'bold',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  starIcon: {
+    fontSize: 18,
+    color: '#FFD700',
+  },
+  destaqueNome: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 4,
+  },
+  destaqueDescricao: {
+    fontSize: 12,
+    color: '#A0A0B0',
   },
 });

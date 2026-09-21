@@ -3,60 +3,71 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121214',
-    padding: 20,
+    backgroundColor: '#13131A',
   },
-  botaoVoltar: {
-    marginTop: 30,
-    marginBottom: 10,
+  contentContainer: {
+    padding: 16,
   },
-  textoVoltar: {
-    color: '#FF6B6B',
+  title: {
+    fontSize: 22,
     fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 4,
   },
-  tituloTela: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFF',
+  subtitle: {
+    fontSize: 14,
+    color: '#A0A0B0',
     marginBottom: 20,
   },
-  cardFavorito: {
-    backgroundColor: '#1E1E2C',
+  galeriaSection: {
+    marginBottom: 24,
+  },
+  sectionHeaderTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 10,
+  },
+  galeriaScroll: {
+    flexDirection: 'row',
+  },
+  galeriaImage: {
+    width: 120,
+    height: 80,
+    borderRadius: 8,
+    marginRight: 10,
+    borderWidth: 1,
+    borderColor: '#6C5CE7',
+  },
+  card: {
+    backgroundColor: '#1E1E28',
     borderRadius: 12,
-    padding: 20,
-    alignItems: 'center',
-  },
-  capa: {
-    width: 140,
-    height: 210,
-    borderRadius: 8,
     marginBottom: 16,
+    overflow: 'hidden',
   },
-  nome: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFF',
-    textAlign: 'center',
-  },
-  autor: {
-    fontSize: 14,
-    color: '#888',
-    marginBottom: 16,
-  },
-  infoBox: {
+  cardImage: {
     width: '100%',
-    backgroundColor: '#29293E',
-    padding: 12,
-    borderRadius: 8,
-    marginTop: 8,
+    height: 140,
   },
-  infoLabel: {
-    color: '#FF6B6B',
+  cardContent: {
+    padding: 16,
+  },
+  cardTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
-    fontSize: 12,
+    color: '#FFFFFF',
+    marginBottom: 6,
   },
-  infoTexto: {
-    color: '#CCC',
+  cardDesc: {
     fontSize: 14,
+    color: '#A0A0B0',
+  },
+  emptyContainer: {
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  emptyText: {
+    color: '#A0A0B0',
+    fontSize: 15,
   },
 });

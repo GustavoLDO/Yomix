@@ -1,42 +1,45 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
-import { styles } from '../assets/styles/item_favorito.styles.js';
+import { View, Text, ScrollView, Image } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { styles } from '../assets/styles/item_favorito.styles';
 
-export default function TelaItemFavorito() {
-  const router = useRouter();
+export default function ItemFavoritoScreen() {
+  const params = useLocalSearchParams();
 
-  const mangaDestaque = {
-    titulo: 'Demon Slayer',
-    autor: 'Koyoharu Gotouge',
-    genero: 'Ação / Sobrenatural',
-    capitulos: '205',
-    imagem: 'https://m.media-amazon.com/images/M/MVBmMzU5N2JjOTAtY2JjZS00Y2E4LTg1M2ItZGY1M2ZhYTJmNWNmXkEyXkFqcGc@._V1_.jpg'
-  };
+  const favoritos = params.favoritosData ? JSON.parse(params.favoritosData as string) : [];
+  const imagens: { uri: string }[] = params.imagensData ? JSON.parse(params.imagensData as string) : [];
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.botaoVoltar} onPress={() => router.back()}>
-        <Text style={styles.textoVoltar}>← Voltar</Text>
-      </TouchableOpacity>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <Text style={styles.title}>⭐ Mangás Favoritados</Text>
+      <Text style={styles.subtitle}>Total de obras em destaque: {favoritos.length}</Text>
 
-      <Text style={styles.tituloTela}>★ Mangá em Destaque</Text>
-
-      <View style={styles.cardFavorito}>
-        <Image source={{ uri: mangaDestaque.imagem }} style={styles.capa} />
-        <Text style={styles.nome}>{mangaDestaque.titulo}</Text>
-        <Text style={styles.autor}>Autor: {mangaDestaque.autor}</Text>
-
-        <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>Gênero:</Text>
-          <Text style={styles.infoTexto}>{mangaDestaque.genero}</Text>
+      {imagens.length > 0 && (
+        <View style={styles.galeriaSection}>
+          <Text style={styles.sectionHeaderTitle}>Capas dos Favoritos</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.galeriaScroll}>
+            {imagens.map((img, index) => (
+              <Image key={index} source={img} style={styles.galeriaImage} />
+            ))}
+          </ScrollView>
         </View>
+      )}
 
-        <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>Capítulos:</Text>
-          <Text style={styles.infoTexto}>{mangaDestaque.capitulos}</Text>
+      {favoritos.map((item: any) => (
+        <View key={item.id} style={styles.card}>
+          <Image source={{ uri: item.imagem }} style={styles.cardImage} />
+          <View style={styles.cardContent}>
+            <Text style={styles.cardTitle}>{item.nome}</Text>
+            <Text style={styles.cardDesc}>{item.descricao}</Text>
+          </View>
         </View>
-      </View>
-    </View>
+      ))}
+
+      {favoritos.length === 0 && (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>Nenhum mangá favoritado no momento.</Text>
+        </View>
+      )}
+    </ScrollView>
   );
 }

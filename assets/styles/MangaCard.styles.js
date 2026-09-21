@@ -2,48 +2,44 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
-    flexDirection: 'row',
-    backgroundColor: '#1E1E2C',
+    backgroundColor: '#1E1E28',
     borderRadius: 12,
-    padding: 12,
-    marginBottom: 16,
-    alignItems: 'center',
+    marginBottom: 12,
+    flexDirection: 'row',
+    overflow: 'hidden',
   },
-  capa: {
+  cardImage: {
     width: 80,
-    height: 120,
-    borderRadius: 8,
-    backgroundColor: '#333',
+    height: 100,
   },
-  infoContainer: {
+  cardContent: {
     flex: 1,
-    marginLeft: 12,
+    padding: 12,
+    justifyContent: 'center',
   },
-  titulo: {
-    fontSize: 18,
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  cardNome: {
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#FFFFFF',
+    flex: 1,
+    marginRight: 8,
   },
-  genero: {
-    fontSize: 12,
-    color: '#FF6B6B',
-    marginVertical: 4,
-  },
-  sinopse: {
+  cardDescricao: {
     fontSize: 13,
-    color: '#AAA',
-    marginBottom: 8,
+    color: '#A0A0B0',
   },
-  botaoDetalhes: {
-    backgroundColor: '#FF6B6B',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 6,
-    alignSelf: 'flex-start',
+  starActive: {
+    fontSize: 20,
+    color: '#FFD700',
   },
-  textoBotao: {
-    color: '#FFF',
-    fontSize: 12,
-    fontWeight: 'bold',
+  starInactive: {
+    fontSize: 20,
+    color: '#505060',
   },
 });

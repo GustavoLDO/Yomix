@@ -1,22 +1,22 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { styles } from '../assets/styles/MangaCard.styles.js';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { styles } from '../assets/styles/MangaCard.styles';
 
-export function MangaCard({ manga, onPress }) {
+export default function MangaCard({ manga, onPress, onToggleFavorito }) {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
-      <Image source={{ uri: manga.imagem }} style={styles.capa} />
-
-      <View style={styles.infoContainer}>
-        <Text style={styles.titulo}>{manga.titulo}</Text>
-        <Text style={styles.genero}>{manga.genero} • {manga.capitulos} Caps</Text>
-        <Text style={styles.sinopse} numberOfLines={2}>
-          {manga.sinopse}
-        </Text>
-        
-        <View style={styles.botaoDetalhes}>
-          <Text style={styles.textoBotao}>Ver detalhes</Text>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
+      <Image source={{ uri: manga.imagem }} style={styles.cardImage} />
+      
+      <View style={styles.cardContent}>
+        <View style={styles.cardHeader}>
+          <Text style={styles.cardNome} numberOfLines={1}>{manga.nome}</Text>
+          <TouchableOpacity onPress={onToggleFavorito} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+            <Text style={manga.favorito ? styles.starActive : styles.starInactive}>
+              {manga.favorito ? '★' : '☆'}
+            </Text>
+          </TouchableOpacity>
         </View>
+        <Text style={styles.cardDescricao} numberOfLines={2}>{manga.descricao}</Text>
       </View>
     </TouchableOpacity>
   );
