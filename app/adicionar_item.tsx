@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
+import { addManga } from './index';
 import { styles } from '../assets/styles/adicionar_item.styles';
 
 /**
@@ -17,6 +18,7 @@ export default function AdicionarItemScreen() {
   const [descricao, setDescricao] = useState('');
   const [personagens, setPersonagens] = useState('');
   const [autor, setAutor] = useState('');
+  const [imagem, setImagem] = useState('');
 
   // Função para tratar a submissão dos dados do formulário
   const handleCadastrar = () => {
@@ -26,18 +28,38 @@ export default function AdicionarItemScreen() {
       return;
     }
 
+    const novoManga = {
+      id: String(Date.now()),
+      nome: nome.trim(),
+      genero: genero.trim(),
+      capitulos: capitulos.trim(),
+      descricao: descricao.trim() || 'Sem descrição disponível.',
+      sinopseCompleta: descricao.trim() || 'Sinopse ainda não informada.',
+      capitulosDetalhe: `${capitulos.trim()} capítulos`,
+      autor: autor.trim() || 'Autor desconhecido',
+      personagens: personagens
+        .split(',')
+        .map((personagem) => personagem.trim())
+        .filter(Boolean),
+      imagem:
+        imagem.trim() ||
+        'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600',
+      favorito: false,
+    };
+
+    addManga(novoManga);
+
     Alert.alert('Sucesso', 'Mangá cadastrado com sucesso!', [
       {
         text: 'OK',
         onPress: () => {
-          // Limpeza dos estados do formulário
           setNome('');
           setGenero('');
           setCapitulos('');
           setDescricao('');
           setPersonagens('');
           setAutor('');
-          // Navegação de volta para a tela inicial do catálogo
+          setImagem('');
           router.push('/');
         },
       },
@@ -115,6 +137,16 @@ export default function AdicionarItemScreen() {
             textAlignVertical="top"
             value={personagens}
             onChangeText={setPersonagens}
+          />
+        </View>
+
+        <View style={styles.fieldGroup}>
+          <TextInput
+            style={styles.input}
+            placeholder="URL da imagem"
+            placeholderTextColor="#8E8E93"
+            value={imagem}
+            onChangeText={setImagem}
           />
         </View>
 

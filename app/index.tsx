@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import MangaCard from '../components/MangaCard';
 import { styles } from '../assets/styles/index.styles';
 
@@ -16,7 +16,7 @@ export const MANGAS_DATA = [
     capitulosDetalhe: '1100+ capítulos',
     autor: 'Eiichiro Oda',
     personagens: ['Luffy', 'Zoro', 'Nami', 'Sanji'],
-    imagem: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600',
+    imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlucOEenm_acJXAxEP_UzLB6gUnngYxKBfi-agVEiqUg&s=10',
     favorito: true,
   },
   {
@@ -29,10 +29,52 @@ export const MANGAS_DATA = [
     capitulosDetalhe: '250+ capítulos',
     autor: 'Gege Akutami',
     personagens: ['Itadori', 'Gojo', 'Megumi', 'Nobara'],
-    imagem: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600',
+    imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvFPuHq2vslZG8vAqowImdEHRkwDvF6VmT6dvIighNlw&s=10',
+    favorito: false,
+  },
+  {
+    id: '3',
+    nome: 'Attack on Titan',
+    genero: 'Ação / Drama',
+    capitulos: '87+ caps',
+    descricao: 'Humanidade luta contra monstros gigantes em uma guerra desesperadora.',
+    sinopseCompleta: 'Em um mundo cercado por enormes criaturas, sobreviventes se unem para tentar recuperar sua liberdade e entender a origem do terror.',
+    capitulosDetalhe: '87+ capítulos',
+    autor: 'Hajime Isayama',
+    personagens: ['Eren', 'Mikasa', 'Armin', 'Levi'],
+    imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvyTt8_tJDgOFzDPM9cnTRw7XQt_J_mvk94Dp_oEbvdg&s=10https://images.unsplash.com/photo-1519638831568-d9897f54ed69?auto=format&fit=crop&w=900&q=80',
+    favorito: false,
+  },
+  {
+    id: '4',
+    nome: 'Demon Slayer',
+    genero: 'Fantasia / Ação',
+    capitulos: '200+ caps',
+    descricao: 'Uma jornada emocional para derrotar demônios e salvar a família.',
+    sinopseCompleta: 'Tanjiro Kamado segue em busca de vingança e cura, enquanto enfrenta criaturas infernais em um mundo de destruição.',
+    capitulosDetalhe: '200+ capítulos',
+    autor: 'Koyoharu Gotouge',
+    personagens: ['Tanjiro', 'Nezuko', 'Zenitsu', 'Inosuke'],
+    imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXpFL3f85Y1YEyGY4vFQJmxt01V1v1Xyo6us-epKNnaw&s=10',
     favorito: false,
   },
 ];
+
+export const addManga = (novoManga: {
+  id: string;
+  nome: string;
+  genero: string;
+  capitulos: string;
+  descricao: string;
+  sinopseCompleta: string;
+  capitulosDetalhe: string;
+  autor: string;
+  personagens: string[];
+  imagem: string;
+  favorito: boolean;
+}) => {
+  MANGAS_DATA.unshift(novoManga);
+};
 
 /**
  * Tela Principal do Catálogo Yomix.
@@ -40,7 +82,13 @@ export const MANGAS_DATA = [
  */
 export default function IndexScreen() {
   const router = useRouter();
-  const [mangas] = useState(MANGAS_DATA);
+  const [mangas, setMangas] = useState(MANGAS_DATA);
+
+  useFocusEffect(
+    useCallback(() => {
+      setMangas([...MANGAS_DATA]);
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
@@ -50,16 +98,9 @@ export default function IndexScreen() {
         renderItem={({ item }) => <MangaCard manga={item} />}
         contentContainerStyle={styles.listContent}
         ListHeaderComponent={
-          <ImageBackground
-            source={{ uri: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800' }}
-            style={styles.banner}
-            imageStyle={{ borderRadius: 8 }}
-          >
-            <View style={styles.bannerOverlay}>
-              <Text style={styles.bannerTitle}>Meus Mangás</Text>
-              <Text style={styles.bannerSubtitle}>Encontre algo incrível para ler!</Text>
-            </View>
-          </ImageBackground>
+          <View style={styles.banner}>
+            <Text style={styles.bannerTitle}>Yomix</Text>
+          </View>
         }
       />
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import MangaCard from '../components/MangaCard';
 import { MANGAS_DATA } from './index';
 import { styles } from '../assets/styles/item_favorito.styles';
@@ -10,9 +10,13 @@ import { styles } from '../assets/styles/item_favorito.styles';
  */
 export default function ItemFavoritoScreen() {
   const router = useRouter();
+  const [favoritos, setFavoritos] = useState(() => MANGAS_DATA.filter((manga) => manga.favorito));
 
-  // Filtragem dos itens cujo parâmetro 'favorito' é verdadeiro
-  const favoritos = MANGAS_DATA.filter((manga) => manga.favorito);
+  useFocusEffect(
+    useCallback(() => {
+      setFavoritos(MANGAS_DATA.filter((manga) => manga.favorito));
+    }, [])
+  );
 
   return (
     <View style={styles.container}>

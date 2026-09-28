@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { MANGAS_DATA } from './index';
@@ -10,18 +10,20 @@ import { styles } from '../assets/styles/detalhes_item.styles';
  */
 export default function DetalhesItemScreen() {
   const router = useRouter();
-  // Resgate dos parâmetros da rota com useLocalSearchParams
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  // Busca do item com base no id recebido por parâmetro
-  const manga = MANGAS_DATA.find((item) => item.id === id) || MANGAS_DATA[0];
+  const manga = useMemo(
+    () => MANGAS_DATA.find((item) => item.id === id) || MANGAS_DATA[0],
+    [id]
+  );
 
-  // Estado para controlar se o item está favoritado
   const [isFavorito, setIsFavorito] = useState(manga.favorito);
 
   const handleToggleFavorito = () => {
-    setIsFavorito(!isFavorito);
-    Alert.alert('Yomix', !isFavorito ? 'Mangá adicionado aos favoritos!' : 'Mangá removido dos favoritos!');
+    const proximoValor = !manga.favorito;
+    manga.favorito = proximoValor;
+    setIsFavorito(proximoValor);
+    Alert.alert('Yomix', proximoValor ? 'Mangá adicionado aos favoritos!' : 'Mangá removido dos favoritos!');
   };
 
   return (
